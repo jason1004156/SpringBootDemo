@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Thymeleaf頁面</title>
+</head>
+<body>
+	<h3>變量輸出</h3>
+	<h4 th:text="${name}"></h4>
+	<h4 th:text="李四"></h4>
+
+	<h3>條件判斷</h3>
+	<div th:if="${gender}=='男'">這是一位男性朋友</div>
+	<div th:if="${gender}=='女'">這是一位女性朋友</div>
+	<br />
+	<div th:switch="${grade}">
+		<span th:case="1">這是1</span> <span th:case="2">這是2</span> <span
+			th:case="3">這是3</span>
+	</div>
+
+	<h3>迭代遍歷</h3>
+	<table border="1">
+		<tr>
+			<td>編號</td>
+			<td>姓名</td>
+			<td>年齡</td>
+		</tr>
+		<tr th:each="user : ${list}">
+			<td th:text="${user.id}"></td>
+			<td th:text="${user.name}"></td>
+			<td th:text="${user.age}"></td>
+		</tr>
+
+	</table>
+
+	<h3>域對象數據獲取</h3>
+	request:
+	<span th:text="${#httpServletRequest.getAttribute('request')}"></span>
+	<br /> session:
+	<span th:text="${session.session}"></span>
+	<br /> application:
+	<span th:text="${application.application}"></span>
+	<br />
+
+	<hr />
+
+	<h3>超連結用法</h3>
+	<a th:href="@{~/demo1}">訪問demo1</a><br/>
+	
+	<a th:href="@{~/demo1(id=1,name=eric)}">訪問demo1，傳遞參數</a>
+</body>
+</html>
